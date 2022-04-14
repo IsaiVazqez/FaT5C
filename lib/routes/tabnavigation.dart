@@ -18,11 +18,11 @@ class TabNavigationItem {
           icon: const Icon(Icons.home),
           title: const Text("Home"),
         ),
-        TabNavigationItem(
+/*         TabNavigationItem(
           page: ServicioHome(),
           icon: const Icon(Icons.sports_volleyball),
           title: const Text("Servicios"),
-        ),
+        ), */
         TabNavigationItem(
           page: ProfilePage(),
           icon: const Icon(Icons.person),

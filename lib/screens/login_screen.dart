@@ -41,12 +41,16 @@ class Login extends StatelessWidget {
                 onPressed: () =>
                     Navigator.pushReplacementNamed(context, 'register'),
                 style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.all(
-                        Colors.indigo.withOpacity(0.1)),
-                    shape: MaterialStateProperty.all(const StadiumBorder())),
-                child: const Text('¿No tienes una cuenta?',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  overlayColor:
+                      MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
+                  shape: MaterialStateProperty.all(
+                    const StadiumBorder(),
+                  ),
+                ),
+                child: const Text(
+                  '¿No tienes una cuenta?',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),

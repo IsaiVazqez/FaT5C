@@ -1,10 +1,9 @@
-import 'package:login/routes/AnimationPageRoute.dart';
-import 'package:login/routes/app_routes.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:login/routes/app_routes.dart';
 import 'package:login/routes/tabnavigation.dart';
-import 'package:login/screens/screens.dart';
-import 'package:provider/provider.dart';
-import '../theme_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,215 +15,149 @@ class _HomeScreenState extends State<HomeScreen> {
   int home = 0;
   @override
   Widget build(BuildContext context) {
-    final menuOptions = AppRoutes.menuOptions;
-    return Consumer<ThemeModel>(
-      builder: (context, ThemeModel themeNotifier, child) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.blueGrey[700],
-            automaticallyImplyLeading: false,
-            title: const Text(
-              'Finding A Tournament',
-            ),
-            elevation: 0,
-            titleTextStyle: const TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-              fontFamily: 'SFPRODISPLAY2',
-              fontWeight: FontWeight.bold,
-            ),
-            actions: [
-              IconButton(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  icon: Icon(themeNotifier.isDark
-                      ? Icons.nightlight_round
-                      : Icons.wb_sunny),
-                  onPressed: () {
-                    themeNotifier.isDark
-                        ? themeNotifier.isDark = false
-                        : themeNotifier.isDark = true;
-                  })
-            ],
-          ),
-          body: SafeArea(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.all(
-                8.0,
-              ),
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 0, left: 10, right: 10),
-                ),
-                const SizedBox(
-                  height: 22,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context, AnimationPageRoute(widget: ServicioHome()));
-                  },
-                  child: const card1(),
-                ),
-                const SizedBox(
-                  height: 22,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context, AnimationPageRoute(widget: TorneosHome()));
-                  },
-                  child: const card2(),
-                ),
-              ],
-            ),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.blueGrey,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white,
-            items: [
-              for (final tabItem in TabNavigationItem.items)
-                BottomNavigationBarItem(
-                  icon: tabItem.icon,
-                  title: tabItem.title,
-                )
-            ],
-            currentIndex: home,
-            onTap: (index) {
-              setState(
-                () {
-                  if (home == index) {
-                    Navigator.pushReplacementNamed(
-                        context, AppRoutes.initialRoute);
-                  } else {
-                    Navigator.pushReplacementNamed(
-                        context, AppRoutes.profileRoute);
-                  }
-                },
-              );
-            },
-          ),
-        );
-      },
+    var orangeTextStyle = const TextStyle(
+      color: Colors.deepOrange,
     );
-  }
-}
-
-class card1 extends StatelessWidget {
-  const card1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: (Card(
-        clipBehavior: Clip.antiAlias,
-        shadowColor: Colors.black,
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/BalonB.png'),
-                alignment: Alignment.topRight,
-                scale: 4,
-                opacity: 40),
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 50, 107, 156),
-                Color.fromARGB(255, 66, 226, 186)
-              ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-            ),
-          ),
-          width: 200,
-          height: 175,
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                SizedBox(
-                  height: 120,
-                  width: 150,
-                  child: Text(
-                    'Gestiona tus Servicios',
-                    textAlign: TextAlign.left,
-                    textWidthBasis: TextWidthBasis.parent,
-                    maxLines: 3,
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontFamily: 'SFPRODISPLAY0',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      )),
-    );
-  }
-}
-
-class card2 extends StatelessWidget {
-  const card2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        shadowColor: Colors.black,
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/trofB.png'),
-                alignment: Alignment.topRight,
-                scale: 4,
-                opacity: 50),
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 203, 56, 248),
-                Color.fromARGB(255, 106, 15, 190)
-              ],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-            ),
-          ),
-          width: 200,
-          height: 175,
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                SizedBox(
-                  height: 120,
-                  width: 150,
-                  child: Text(
-                    'Gestiona tus Torneos',
-                    textAlign: TextAlign.start,
-                    textWidthBasis: TextWidthBasis.parent,
-                    maxLines: 3,
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: 'SFPRODISPLAY0 ',
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16.0),
         ),
       ),
+      body: Stack(
+        children: <Widget>[_buildHeader(context)],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.blueGrey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        items: [
+          for (final tabItem in TabNavigationItem.items)
+            BottomNavigationBarItem(
+              icon: tabItem.icon,
+              title: tabItem.title,
+            )
+        ],
+        currentIndex: home,
+        onTap: (index) {
+          setState(
+            () {
+              if (home == index) {
+                Navigator.pushReplacementNamed(context, AppRoutes.initialRoute);
+              } else {
+                Navigator.pushReplacementNamed(context, AppRoutes.profileRoute);
+              }
+            },
+          );
+        },
+      ),
     );
+  }
+
+  Widget _buildListItem() {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+    );
+  }
+
+  Container _buildHeader(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(top: 50.0),
+        height: 240.0,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(
+                  top: 40.0, left: 40.0, right: 40.0, bottom: 10.0),
+              child: Material(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                elevation: 5.0,
+                color: Colors.white,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 50.0,
+                    ),
+                    Text(
+                      "Mebina Nepal",
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    Text("UI/UX designer | Foodie | Kathmandu"),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    Container(
+                      height: 40.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            child: ListTile(
+                              title: Text(
+                                "302",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text("Posts".toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 12.0)),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              title: Text(
+                                "10.3K",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text("Followers".toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 12.0)),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              title: Text(
+                                "120",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text("Following".toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 12.0)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Material(
+                  elevation: 5.0,
+                  shape: CircleBorder(),
+                  child: CircleAvatar(
+                    radius: 40.0,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }
