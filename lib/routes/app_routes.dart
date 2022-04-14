@@ -33,7 +33,7 @@ class AppRoutes {
     ItemMenu(
       label: 'profile',
       route: profileRoute,
-      screen: const ProfilePage(),
+      screen: ProfilePage(),
     ),
     ItemMenu(
       label: 'servicio',

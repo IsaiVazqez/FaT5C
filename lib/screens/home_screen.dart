@@ -1,11 +1,10 @@
 import 'package:login/routes/AnimationPageRoute.dart';
 import 'package:login/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:login/routes/tabnavigation.dart';
 import 'package:login/screens/screens.dart';
 import 'package:provider/provider.dart';
 import '../theme_model.dart';
-import 'package:google_nav_bar/google_nav_bar.dart' show GButton, GNav;
-import 'package:line_icons/line_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,9 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, ThemeModel themeNotifier, child) {
         return Scaffold(
           appBar: AppBar(
-            shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(10))),
+            backgroundColor: Colors.blueGrey[700],
             automaticallyImplyLeading: false,
             title: const Text(
               'Finding A Tournament',
@@ -82,58 +79,32 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          bottomNavigationBar: Container(
-            decoration: BoxDecoration(
-              color: Colors.indigo,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 20,
-                  color: Colors.black.withOpacity(.1),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.blueGrey,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white,
+            items: [
+              for (final tabItem in TabNavigationItem.items)
+                BottomNavigationBarItem(
+                  icon: tabItem.icon,
+                  title: tabItem.title,
                 )
-              ],
-            ),
-            child: SafeArea(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 60, vertical: 8),
-                child: GNav(
-                  rippleColor: Colors.grey[300]!,
-                  hoverColor: Colors.grey[100]!,
-                  gap: 8,
-                  activeColor: Colors.black,
-                  iconSize: 24,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  duration: const Duration(milliseconds: 400),
-                  tabBackgroundColor: Colors.white,
-                  color: Colors.black,
-                  tabs: [
-                    const GButton(
-                      icon: LineIcons.home,
-                      text: 'Home',
-                    ),
-                    const GButton(
-                      icon: LineIcons.user,
-                      text: 'Profile',
-                    ),
-                  ],
-                  selectedIndex: home,
-                  onTabChange: (index) {
-                    setState(
-                      () {
-                        if (home == index) {
-                          Navigator.pushReplacementNamed(
-                              context, AppRoutes.initialRoute);
-                        } else {
-                          Navigator.pushReplacementNamed(
-                              context, AppRoutes.profileRoute);
-                        }
-                      },
-                    );
-                  },
-                ),
-              ),
-            ),
+            ],
+            currentIndex: home,
+            onTap: (index) {
+              setState(
+                () {
+                  if (home == index) {
+                    Navigator.pushReplacementNamed(
+                        context, AppRoutes.initialRoute);
+                  } else {
+                    Navigator.pushReplacementNamed(
+                        context, AppRoutes.profileRoute);
+                  }
+                },
+              );
+            },
           ),
         );
       },

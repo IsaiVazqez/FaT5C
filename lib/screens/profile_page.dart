@@ -1,256 +1,201 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
-import '../models/user.dart';
-import '../routes/app_routes.dart';
-import '../themes/user_preferences.dart';
-import 'package:login/widgets/widgets.dart';
-import 'package:login/screens/screens.dart';
-import 'package:location/location.dart';
+import 'package:login/routes/app_routes.dart';
+import 'package:login/routes/tabnavigation.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
-
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  static final String path = "lib/src/pages/profile/profile1.dart";
   int home = 1;
-
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
-
     return Scaffold(
-        appBar: AppBar(
-            shape: const RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(22))),
-            automaticallyImplyLeading: false,
-            title: const Center(child: Text('Perfil')),
-            elevation: 0,
-            titleTextStyle: const TextStyle(
-                fontSize: 20,
-                color: Color.fromARGB(255, 255, 255, 255),
-                fontWeight: FontWeight.bold,
-                fontFamily: 'SFPRODISPLAY'),
-            actions: []),
-        body: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: [
-            const SizedBox(height: 10),
-            ProfileWidget(
-              imagePath: user.imagePath,
-              onClicked: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => EditProfilePage()),
-                );
-              },
+      // backgroundColor: Colors.deepOrange,
+      appBar: AppBar(
+        title: Text("View Profile"),
+        backgroundColor: Colors.red,
+        elevation: 0,
+      ),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    stops: [0.5, 0.9],
+                    colors: [Colors.red, Colors.deepOrange.shade300])),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    CircleAvatar(
+                      child: Icon(
+                        Icons.call,
+                        size: 30.0,
+                      ),
+                      minRadius: 30.0,
+                      backgroundColor: Colors.red.shade600,
+                    ),
+                    CircleAvatar(
+                      minRadius: 60,
+                      backgroundColor: Colors.deepOrange.shade300,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage("assets/Merida-FC.png"),
+                        minRadius: 50,
+                      ),
+                    ),
+                    CircleAvatar(
+                      child: Icon(
+                        Icons.message,
+                        size: 30.0,
+                      ),
+                      minRadius: 30.0,
+                      backgroundColor: Colors.red.shade600,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Ram Kumar",
+                  style: TextStyle(fontSize: 22.0, color: Colors.white),
+                ),
+                Text(
+                  "Kathmandu, Nepal",
+                  style: TextStyle(fontSize: 14.0, color: Colors.red.shade700),
+                )
+              ],
             ),
-            const SizedBox(height: 24),
-            buildName(user),
-            const SizedBox(height: 24),
-            NumbersWidget(),
-            const SizedBox(height: 24),
-            buildDirecc(user),
-            const SizedBox(height: 24),
-            buildHorario(user),
-            const SizedBox(height: 20),
-            buildUbicacion(user),
-            Container(
-              child: MapScreen(),
-              margin: const EdgeInsets.only(
-                  top: 20, left: 35, right: 35, bottom: 5),
-              width: 20,
-              height: 200,
+          ),
+          Container(
+            // height: 50,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    color: Colors.deepOrange.shade300,
+                    child: ListTile(
+                      title: Text(
+                        "50895",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0),
+                      ),
+                      subtitle: Text(
+                        "FOLLOWERS",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    color: Colors.red,
+                    child: ListTile(
+                      title: Text(
+                        "34524",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0),
+                      ),
+                      subtitle: Text(
+                        "FOLLOWING",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ListTile(
+            title: Text(
+              "Email",
+              style: TextStyle(color: Colors.deepOrange, fontSize: 12.0),
+            ),
+            subtitle: Text(
+              "ram@kumar.com",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Phone",
+              style: TextStyle(color: Colors.deepOrange, fontSize: 12.0),
+            ),
+            subtitle: Text(
+              "+977 9818225533",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Twitter",
+              style: TextStyle(color: Colors.deepOrange, fontSize: 12.0),
+            ),
+            subtitle: Text(
+              "@ramkumar",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "Facebook",
+              style: TextStyle(color: Colors.deepOrange, fontSize: 12.0),
+            ),
+            subtitle: Text(
+              "facebook.com/ramkumar",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+          Divider(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.blueGrey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        items: [
+          for (final tabItem in TabNavigationItem.items)
+            BottomNavigationBarItem(
+              icon: tabItem.icon,
+              title: tabItem.title,
             )
-          ],
-        ),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            color: Colors.indigo,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 20,
-                color: Colors.black.withOpacity(.1),
-              )
-            ],
-          ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 8),
-              child: GNav(
-                rippleColor: Colors.grey[300]!,
-                hoverColor: Colors.grey[100]!,
-                gap: 8,
-                activeColor: Colors.black,
-                iconSize: 24,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                duration: const Duration(milliseconds: 400),
-                tabBackgroundColor: Colors.white,
-                color: Colors.black,
-                tabs: [
-                  const GButton(
-                    icon: LineIcons.home,
-                    text: 'Home',
-                  ),
-                  const GButton(
-                    icon: LineIcons.user,
-                    text: 'Profile',
-                  ),
-                ],
-                selectedIndex: home,
-                onTabChange: (index) {
-                  setState(
-                    () {
-                      if (home == index) {
-                        Navigator.pushReplacementNamed(
-                            context, AppRoutes.profileRoute);
-                      } else {
-                        Navigator.pushReplacementNamed(
-                            context, AppRoutes.initialRoute);
-                      }
-                    },
-                  );
-                },
-              ),
-            ),
-          ),
-        ));
-  }
-}
-
-Widget buildName(User user) => Column(
-      children: [
-        Text(
-          user.name,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-        ),
-        const SizedBox(height: 10),
-        Text(
-          user.number,
-          style: const TextStyle(color: Colors.grey),
-        )
-      ],
-    );
-
-Widget buildDirecc(User user) => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 48),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
-            'Dirección',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            user.adress,
-            style: const TextStyle(fontSize: 16, height: 1.4),
-          ),
         ],
-      ),
-    );
-
-Widget buildHorario(User user) => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 48),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
-            'Horario',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            user.horarios,
-            style: const TextStyle(fontSize: 16, height: 1.4),
-          ),
-        ],
-      ),
-    );
-
-Widget buildUbicacion(User user) => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 48),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          Text(
-            'Ubicación',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    );
-
-class MapScreen extends StatefulWidget {
-  List<Marker> myMarker = [];
-
-  @override
-  _MapScreenState createState() => _MapScreenState();
-}
-
-class _MapScreenState extends State<MapScreen> {
-  late GoogleMapController mapController; //contrller for Google map
-  Location _location = Location();
-  Set<Marker> markers = new Set(); //markers for google map
-  static const LatLng showLocation =
-      LatLng(20.943781926121023, -89.5940972859401);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
-          bottomRight: Radius.circular(10),
-          bottomLeft: Radius.circular(10),
-        ),
-        child: Align(
-          alignment: Alignment.bottomRight,
-          heightFactor: 10,
-          widthFactor: 2.5,
-          child: GoogleMap(
-            zoomGesturesEnabled: true,
-            initialCameraPosition: const CameraPosition(
-              //innital position in map
-              target: showLocation, //initial position
-              zoom: 15.0, //initial zoom level
-            ),
-            markers: getmarkers(), //markers to show on map
-            mapType: MapType.normal, //map type
-            onMapCreated: (controller) {
-              //method called when map is created
-              _location.onLocationChanged.listen((l) {});
-              setState(() {
-                mapController = controller;
-              });
+        currentIndex: home,
+        onTap: (index) {
+          setState(
+            () {
+              if (home == index) {
+                Navigator.pushReplacementNamed(context, AppRoutes.profileRoute);
+              } else {
+                Navigator.pushReplacementNamed(context, AppRoutes.initialRoute);
+              }
             },
-            myLocationEnabled: true,
-          ),
-        ),
+          );
+        },
       ),
     );
-  }
-
-  Set<Marker> getmarkers() {
-    //markers to place on map
-    setState(() {
-      markers.add(Marker(
-        //add first marker
-        markerId: MarkerId(showLocation.toString()),
-        position: showLocation, //position of marker
-        infoWindow: const InfoWindow(
-          //popup info
-          title: 'Deportivo Kukulkan',
-        ),
-        icon: BitmapDescriptor.defaultMarker, //Icon for Marker
-      ));
-    });
-    return markers;
   }
 }
