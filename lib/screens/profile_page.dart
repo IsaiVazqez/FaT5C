@@ -54,8 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       minRadius: 60,
                       backgroundColor: Colors.blueGrey.shade300,
                       child: const CircleAvatar(
-                        backgroundImage:
-                            const AssetImage("assets/Merida-FC.png"),
+                        backgroundImage: AssetImage("assets/Merida-FC.png"),
                         minRadius: 50,
                       ),
                     ),
@@ -74,82 +73,79 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 10,
                 ),
                 const Text(
-                  "Ram Kumar",
-                  style: const TextStyle(fontSize: 22.0, color: Colors.white),
+                  "CF Mérida",
+                  style: TextStyle(fontSize: 22.0, color: Colors.white),
                 ),
-                Text(
-                  "Kathmandu, Nepal",
+                const Text(
+                  "123123123",
                   style: TextStyle(fontSize: 14.0, color: Colors.black),
                 )
               ],
             ),
           ),
-          Container(
-            // height: 50,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    color: Colors.blueGrey.shade500,
-                    child: const ListTile(
-                      title: const Text(
-                        "50895",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0),
-                      ),
-                      subtitle: const Text(
-                        "FOLLOWERS",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black),
-                      ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  color: Colors.blueGrey.shade500,
+                  child: const ListTile(
+                    title: Text(
+                      "50895",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0),
+                    ),
+                    subtitle: Text(
+                      "TORNEOS",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    color: Colors.blueGrey.shade600,
-                    child: const ListTile(
-                      title: const Text(
-                        "34524",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24.0),
-                      ),
-                      subtitle: Text(
-                        "FOLLOWING",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white70),
-                      ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.blueGrey.shade600,
+                  child: const ListTile(
+                    title: Text(
+                      "24",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0),
+                    ),
+                    subtitle: Text(
+                      "SERVICIOS",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white70),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          ListTile(
+          const ListTile(
             title: Text(
               "Email",
               style: TextStyle(color: Colors.black, fontSize: 12.0),
             ),
-            subtitle: const Text(
-              "ram@kumar.com",
+            subtitle: Text(
+              "asdioajsd@hotmail.com",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
           const Divider(),
           const ListTile(
-            title: const Text(
+            title: Text(
               "Phone",
               style: TextStyle(color: Colors.black, fontSize: 12.0),
             ),
-            subtitle: const Text(
+            subtitle: Text(
               "+977 9818225533",
-              style: const TextStyle(fontSize: 18.0),
+              style: TextStyle(fontSize: 18.0),
             ),
           ),
           const Divider(),
@@ -160,12 +156,12 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             subtitle: Text(
               "@ramkumar",
-              style: const TextStyle(fontSize: 18.0),
+              style: TextStyle(fontSize: 18.0),
             ),
           ),
           const Divider(),
           const ListTile(
-            title: const Text(
+            title: Text(
               "Facebook",
               style: TextStyle(color: Colors.black, fontSize: 12.0),
             ),
