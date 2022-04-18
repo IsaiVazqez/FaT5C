@@ -31,19 +31,19 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Material App',
             debugShowCheckedModeBanner: false,
-            theme: themeNotifier.isDark
+/*             theme: themeNotifier.isDark
                 ? ThemeData.dark().copyWith(
                     appBarTheme: const AppBarTheme(
                         backgroundColor: Colors.indigo,
                         centerTitle: true,
                         foregroundColor: Colors.white),
-                    scaffoldBackgroundColor: Colors.black87,
+                    scaffoldBackgroundColor: Colors.white,
                     textTheme: TextTheme(),
                   )
                 : ThemeData.light().copyWith(
                     appBarTheme: const AppBarTheme(
                         centerTitle: true, backgroundColor: Colors.indigo),
-                    scaffoldBackgroundColor: Colors.white),
+                    scaffoldBackgroundColor: Colors.white), */
             home: const SplashScreen(),
             routes: AppRoutes.getRoutes(),
           );

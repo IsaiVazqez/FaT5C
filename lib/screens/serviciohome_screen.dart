@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:login/models/models.dart';
 import 'package:login/routes/AnimationPageRoute.dart';
 import 'package:login/routes/app_routes.dart';
@@ -17,7 +15,7 @@ class ServicioHome extends StatefulWidget {
 }
 
 class _ServicioHomeState extends State<ServicioHome> {
-  int home = 1;
+  int home = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +25,10 @@ class _ServicioHomeState extends State<ServicioHome> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pushNamed(context, 'HomeScreen'),
-        ),
-        title: Text('Servicios'),
+        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text('Mis Servicios'),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
       ),
@@ -49,7 +46,7 @@ class _ServicioHomeState extends State<ServicioHome> {
                 ),
               )),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
         backgroundColor: Colors.indigo,
@@ -61,14 +58,14 @@ class _ServicioHomeState extends State<ServicioHome> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blueGrey,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white,
         items: [
           for (final tabItem in TabNavigationItem.items)
             BottomNavigationBarItem(
               icon: tabItem.icon,
-              title: tabItem.title,
+              label: tabItem.label,
             )
         ],
         currentIndex: home,
@@ -76,10 +73,9 @@ class _ServicioHomeState extends State<ServicioHome> {
           setState(
             () {
               if (home == index) {
-                Navigator.pushReplacementNamed(
-                    context, AppRoutes.servicioscreen);
-              } else {
                 Navigator.pushReplacementNamed(context, AppRoutes.initialRoute);
+              } else {
+                Navigator.pushReplacementNamed(context, AppRoutes.profileRoute);
               }
             },
           );

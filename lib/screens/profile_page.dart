@@ -14,6 +14,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         title: const Text("Mi Perfil"),
         backgroundColor: Colors.blueGrey[300],
@@ -183,7 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
           for (final tabItem in TabNavigationItem.items)
             BottomNavigationBarItem(
               icon: tabItem.icon,
-              title: tabItem.title,
+              label: tabItem.label.toString(),
             )
         ],
         currentIndex: home,

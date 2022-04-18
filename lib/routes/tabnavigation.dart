@@ -3,12 +3,12 @@ import 'package:login/screens/screens.dart';
 
 class TabNavigationItem {
   final Widget page;
-  final Widget title;
+  final String label;
   final Icon icon;
 
   TabNavigationItem({
     required this.page,
-    required this.title,
+    required this.label,
     required this.icon,
   });
 
@@ -16,7 +16,7 @@ class TabNavigationItem {
         TabNavigationItem(
           page: HomeScreen(),
           icon: const Icon(Icons.home),
-          title: const Text("Home"),
+          label: 'Home',
         ),
 /*         TabNavigationItem(
           page: ServicioHome(),
@@ -26,7 +26,7 @@ class TabNavigationItem {
         TabNavigationItem(
           page: ProfilePage(),
           icon: const Icon(Icons.person),
-          title: const Text("Perfil"),
+          label: 'Perfil',
         ),
       ];
 }

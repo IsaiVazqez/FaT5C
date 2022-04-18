@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:login/models/models.dart';
 import 'package:login/routes/AnimationPageRoute.dart';
+import 'package:login/routes/app_routes.dart';
+import 'package:login/routes/tabnavigation.dart';
 import 'package:login/services/services.dart';
 import 'package:login/widgets/widgets.dart';
 import 'package:login/screens/screens.dart';
 import 'package:provider/provider.dart';
 
-class TorneosHome extends StatelessWidget {
+class TorneosHome extends StatefulWidget {
+  const TorneosHome({Key? key}) : super(key: key);
+  @override
+  _TorneosHomeState createState() => _TorneosHomeState();
+}
+
+class _TorneosHomeState extends State<TorneosHome> {
   int home = 0;
 
   @override
@@ -14,12 +22,19 @@ class TorneosHome extends StatelessWidget {
     final torneoService = Provider.of<TorneoService>(context);
 
     if (torneoService.isLoading) return LoadingTorneoScreen();
+    int home = 0;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Torneos'),
+        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text('Torneos'),
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(10),
+          ),
+        ),
       ),
       body: ListView.builder(
         itemCount: torneoService.torneo.length,
@@ -34,7 +49,7 @@ class TorneosHome extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
         backgroundColor: Colors.indigo,
@@ -50,6 +65,31 @@ class TorneosHome extends StatelessWidget {
             tipotorneo: '',
           );
           Navigator.push(context, AnimationPageRoute(widget: ToneoEditar()));
+        },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.blueGrey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        items: [
+          for (final tabItem in TabNavigationItem.items)
+            BottomNavigationBarItem(
+              icon: tabItem.icon,
+              label: tabItem.label,
+            )
+        ],
+        currentIndex: home,
+        onTap: (index) {
+          setState(
+            () {
+              if (home == index) {
+                Navigator.pushReplacementNamed(context, AppRoutes.initialRoute);
+              } else {
+                Navigator.pushReplacementNamed(context, AppRoutes.profileRoute);
+              }
+            },
+          );
         },
       ),
     );

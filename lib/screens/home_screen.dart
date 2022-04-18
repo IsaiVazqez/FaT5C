@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           'FaT',
         ),
@@ -56,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           for (final tabItem in TabNavigationItem.items)
             BottomNavigationBarItem(
               icon: tabItem.icon,
-              title: tabItem.title,
+              label: tabItem.label.toString(),
             )
         ],
         currentIndex: home,
@@ -184,14 +185,14 @@ class cardServicios extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/logo.png'),
+                image: AssetImage('assets/sports.png'),
                 alignment: Alignment.bottomCenter,
-                scale: 4,
+                scale: 4.5,
                 opacity: 50),
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 50, 107, 156),
-                Color.fromARGB(255, 66, 226, 186)
+                Color.fromARGB(255, 45, 59, 212),
+                Color.fromARGB(255, 146, 179, 251)
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
@@ -210,7 +211,7 @@ class cardServicios extends StatelessWidget {
                     title: Text(
                       'Mis Servicios',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 19,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
@@ -240,14 +241,14 @@ class cardtorneos extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/logo.png'),
+                image: AssetImage('assets/trophy.png'),
                 alignment: Alignment.bottomCenter,
-                scale: 4,
+                scale: 4.5,
                 opacity: 50),
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 50, 107, 156),
-                Color.fromARGB(255, 66, 226, 186)
+                Color.fromARGB(255, 2, 107, 198),
+                Color.fromARGB(255, 164, 215, 248)
               ],
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
@@ -256,7 +257,8 @@ class cardtorneos extends StatelessWidget {
           width: 180,
           height: 220,
           child: Padding(
-            padding: const EdgeInsets.all(15),
+            padding:
+                const EdgeInsets.only(left: 20, right: 5, bottom: 15, top: 15),
             child: Row(
               children: const [
                 SizedBox(
@@ -266,7 +268,7 @@ class cardtorneos extends StatelessWidget {
                     title: Text(
                       'Mis Torneos',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 19,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
