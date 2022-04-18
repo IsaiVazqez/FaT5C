@@ -22,9 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: Colors.blueGrey,
         elevation: 0,
-        leading: const Padding(
-          padding: EdgeInsets.only(left: 16.0),
-        ),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: <Widget>[
@@ -79,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Container _buildHeader(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(top: 50.0),
+        margin: const EdgeInsets.only(top: 30.0),
         height: 240.0,
         child: Stack(
           children: <Widget>[
@@ -102,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 5.0,
                     ),
-                    const Text("5646456456"),
+                    const Text("9993458921"),
                     const SizedBox(
                       height: 16.0,
                     ),
@@ -126,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Expanded(
                             child: ListTile(
                               title: const Text(
-                                "10.3K",
+                                "200",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
@@ -162,6 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   shape: CircleBorder(),
                   child: CircleAvatar(
                     radius: 40.0,
+                    backgroundImage: AssetImage("assets/Merida-FC.png"),
                   ),
                 ),
               ],
@@ -177,7 +176,6 @@ class cardServicios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.topLeft,
       margin: const EdgeInsets.only(left: 10, right: 5, bottom: 10),
       child: (Card(
         clipBehavior: Clip.antiAlias,
@@ -200,7 +198,7 @@ class cardServicios extends StatelessWidget {
             ),
           ),
           width: 180,
-          height: 200,
+          height: 220,
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: Row(
@@ -234,7 +232,6 @@ class cardtorneos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.topRight,
       margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: (Card(
         clipBehavior: Clip.antiAlias,
@@ -257,7 +254,7 @@ class cardtorneos extends StatelessWidget {
             ),
           ),
           width: 180,
-          height: 200,
+          height: 220,
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: Row(

@@ -14,6 +14,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text("Mi Perfil"),
         backgroundColor: Colors.blueGrey[300],
         elevation: 0,
@@ -26,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    stops: [
+                    stops: const [
                   0.5,
                   0.9
                 ],
@@ -77,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(fontSize: 22.0, color: Colors.white),
                 ),
                 const Text(
-                  "123123123",
+                  "9993458921",
                   style: TextStyle(fontSize: 14.0, color: Colors.black),
                 )
               ],
@@ -90,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.blueGrey.shade500,
                   child: const ListTile(
                     title: Text(
-                      "50895",
+                      "12",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -133,40 +134,40 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(color: Colors.black, fontSize: 12.0),
             ),
             subtitle: Text(
-              "asdioajsd@hotmail.com",
+              "FindingATournament@hotmail.com",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
           const Divider(),
           const ListTile(
             title: Text(
-              "Phone",
+              "Teléfono",
               style: TextStyle(color: Colors.black, fontSize: 12.0),
             ),
             subtitle: Text(
-              "+977 9818225533",
+              "9993458921",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
           const Divider(),
           const ListTile(
             title: Text(
-              "Twitter",
+              "Dirección",
               style: TextStyle(color: Colors.black, fontSize: 12.0),
             ),
             subtitle: Text(
-              "@ramkumar",
+              "Calle 68 #45 por 106 y 108 Dolores Otero",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
           const Divider(),
           const ListTile(
             title: Text(
-              "Facebook",
+              "Horarios",
               style: TextStyle(color: Colors.black, fontSize: 12.0),
             ),
             subtitle: Text(
-              "facebook.com/ramkumar",
+              "Lunes a domingo de 12PM a 10PM",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
