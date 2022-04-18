@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Container _buildHeader(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(top: 30.0),
+        margin: const EdgeInsets.only(top: 25.0),
         height: 240.0,
         child: Stack(
           children: <Widget>[

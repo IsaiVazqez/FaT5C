@@ -30,11 +30,6 @@ class _TorneosHomeState extends State<TorneosHome> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text('Torneos'),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(10),
-          ),
-        ),
       ),
       body: ListView.builder(
         itemCount: torneoService.torneo.length,

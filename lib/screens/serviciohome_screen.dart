@@ -29,8 +29,6 @@ class _ServicioHomeState extends State<ServicioHome> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text('Mis Servicios'),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(10))),
       ),
       body: ListView.builder(
           itemCount: servicioService.servicio.length,
