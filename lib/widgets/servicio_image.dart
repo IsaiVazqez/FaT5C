@@ -14,13 +14,10 @@ class ServicioImage extends StatelessWidget {
       child: Container(
         decoration: _buildBoxDecoration(),
         width: double.infinity,
-        height: 450,
+        height: 200,
         child: Opacity(
           opacity: 0.9,
-          child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(45), topRight: Radius.circular(45)),
-              child: getImage(url)),
+          child: ClipRRect(child: getImage(url)),
         ),
       ),
     );
@@ -28,10 +25,7 @@ class ServicioImage extends StatelessWidget {
 
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
           color: Colors.indigo,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(45),
-            topRight: Radius.circular(45),
-          ),
+          borderRadius: BorderRadius.only(),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.5),

@@ -30,6 +30,28 @@ class _TorneosHomeState extends State<TorneosHome> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text('Torneos'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              torneoService.selectedTorneo = new Torneos(
+                fecha: DateTime.now(),
+                disciplina: '',
+                disponibilidad: false,
+                equipos: 0,
+                bases: '',
+                costo: 0,
+                rondas: 0,
+                tipotorneo: '',
+              );
+              Navigator.push(
+                  context, AnimationPageRoute(widget: ToneoEditar()));
+            },
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: torneoService.torneo.length,
@@ -42,25 +64,6 @@ class _TorneosHomeState extends State<TorneosHome> {
             torneo: torneoService.torneo[index],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(
-          Icons.add,
-        ),
-        backgroundColor: Colors.indigo,
-        onPressed: () {
-          torneoService.selectedTorneo = new Torneos(
-            fecha: DateTime.now(),
-            disciplina: '',
-            disponibilidad: false,
-            equipos: 0,
-            bases: '',
-            costo: 0,
-            rondas: 0,
-            tipotorneo: '',
-          );
-          Navigator.push(context, AnimationPageRoute(widget: ToneoEditar()));
-        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

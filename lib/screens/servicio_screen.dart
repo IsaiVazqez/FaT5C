@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:login/providers/services_form_provider.dart';
-import 'package:login/routes/app_routes.dart';
+import 'package:login/screens/serviciohome_screen.dart';
 import 'package:login/services/services.dart';
 import 'package:login/userinterface/input_decorations.dart';
 import 'package:login/widgets/widgets.dart';
@@ -32,68 +32,92 @@ class _ServicesScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final servicioForm = Provider.of<ServiceFormProvider>(context);
     return Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  ServicioImage(url: servicioService.selectedServicio.picture),
-                  Positioned(
-                      top: 60,
-                      left: 20,
-                      child: IconButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        icon: const Icon(Icons.arrow_back_ios_new,
-                            size: 40, color: Colors.white),
-                      )),
-                  Positioned(
-                      top: 60,
-                      right: 20,
-                      child: IconButton(
-                        onPressed: () async {
-                          final picker = new ImagePicker();
-                          final PickedFile? pickedFile = await picker.getImage(
-                              source: ImageSource.gallery, imageQuality: 100);
-                          if (pickedFile == null) {
-                            print('No selecciono una imagén');
-                            return;
-                          }
-                          servicioService
-                              .updateSelectedProductImage(pickedFile.path);
-                        },
-                        icon: Icon(Icons.camera_alt_outlined,
-                            size: 40, color: Colors.white),
-                      )),
-                ],
-              ),
-              _ServicioForm(),
-              SizedBox(height: 100),
-            ],
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        floatingActionButton: FloatingActionButton(
-          child: servicioService.isSaving
-              ? const CircularProgressIndicator(
-                  color: Colors.white,
-                )
-              : const Icon(
-                  Icons.save_outlined,
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        centerTitle: true,
+        title: const Text('Editar Servicio'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.save,
+              color: Colors.white,
+            ),
+            onPressed: servicioService.isSaving
+                ? null
+                : () async {
+                    if (!servicioForm.isValidForm()) return;
+
+                    final String? imageUlr =
+                        await servicioService.uploadImage();
+
+                    if (imageUlr != null) {
+                      servicioForm.servicio.picture = imageUlr;
+                    }
+                    await servicioService
+                        .saveOrCreateServicio(servicioForm.servicio);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ServicioHome(),
+                        ));
+                  },
+          )
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 3),
+            _ServicioForm(),
+            Stack(
+              children: [
+                ServicioImage(url: servicioService.selectedServicio.picture),
+                Positioned(
+                  top: 20,
+                  right: 20,
+                  child: IconButton(
+                    onPressed: () async {
+                      final picker = new ImagePicker();
+                      final PickedFile? pickedFile = await picker.getImage(
+                          source: ImageSource.gallery, imageQuality: 100);
+                      if (pickedFile == null) {
+                        print('No selecciono una imagén');
+                        return;
+                      }
+                      servicioService
+                          .updateSelectedProductImage(pickedFile.path);
+                    },
+                    icon: Icon(Icons.image, size: 30, color: Colors.blueGrey),
+                  ),
                 ),
-          onPressed: servicioService.isSaving
-              ? null
-              : () async {
-                  if (!servicioForm.isValidForm()) return;
+              ],
+            ),
+          ],
+        ),
+      ),
+/*       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        child: servicioService.isSaving
+            ? const CircularProgressIndicator(
+                color: Colors.white,
+              )
+            : const Icon(
+                Icons.save_outlined,
+              ),
+        onPressed: servicioService.isSaving
+            ? null
+            : () async {
+                if (!servicioForm.isValidForm()) return;
 
-                  final String? imageUlr = await servicioService.uploadImage();
+                final String? imageUlr = await servicioService.uploadImage();
 
-                  if (imageUlr != null)
-                    servicioForm.servicio.picture = imageUlr;
-                  await servicioService
-                      .saveOrCreateServicio(servicioForm.servicio);
-                  Navigator.pushNamed(context, 'servicios');
-                },
-        ));
+                if (imageUlr != null) servicioForm.servicio.picture = imageUlr;
+                await servicioService
+                    .saveOrCreateServicio(servicioForm.servicio);
+                Navigator.pushNamed(context, 'servicios');
+              },
+      ), */
+    );
   }
 }
 
@@ -137,11 +161,11 @@ class _ServicioForm extends StatelessWidget {
               DropdownButtonFormField<String>(
                 isExpanded: true,
                 decoration: InputDecoration(
-                  labelText: 'Horarios',
+                  labelText: 'Servicios',
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide:
-                        const BorderSide(width: 1, color: Colors.indigo),
+                        const BorderSide(width: 1, color: Colors.blueGrey),
                   ),
                   focusedBorder: const UnderlineInputBorder(
                       borderSide:
@@ -212,7 +236,7 @@ class _ServicioForm extends StatelessWidget {
                     'Adecuado para personas con movilidad reducida',
                     style: TextStyle(color: Colors.black),
                   ),
-                  activeColor: Colors.indigo,
+                  activeColor: Colors.blueGrey,
                   onChanged: servicioForm.updateAvailability),
               SizedBox(height: 30),
             ],
@@ -224,12 +248,8 @@ class _ServicioForm extends StatelessWidget {
 
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomRight: Radius.circular(25),
-          bottomLeft: Radius.circular(25),
-        ),
         border: Border.all(
-          color: Colors.indigo,
+          color: Colors.blueGrey,
         ),
         boxShadow: [
           BoxShadow(

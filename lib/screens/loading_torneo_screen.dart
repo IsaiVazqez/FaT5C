@@ -5,7 +5,10 @@ class LoadingTorneoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Torneos'),
+        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: const Text('Mis Torneos'),
       ),
       body: Center(
         child: CircularProgressIndicator(color: Colors.indigo),

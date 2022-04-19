@@ -40,8 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const cardServicios()),
               GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => TorneosHome()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TorneosHome()));
                   },
                   child: const cardtorneos()),
             ],

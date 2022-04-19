@@ -29,6 +29,23 @@ class _ServicioHomeState extends State<ServicioHome> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text('Mis Servicios'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              servicioService.selectedServicio = new Servicio(
+                  horario: '',
+                  discapacitados: false,
+                  name: 'Fútbol',
+                  personas: 0);
+              Navigator.push(
+                  context, AnimationPageRoute(widget: ServicioScreen()));
+            },
+          )
+        ],
       ),
       body: ListView.builder(
           itemCount: servicioService.servicio.length,
@@ -43,17 +60,6 @@ class _ServicioHomeState extends State<ServicioHome> {
                   servicio: servicioService.servicio[index],
                 ),
               )),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(
-          Icons.add,
-        ),
-        backgroundColor: Colors.indigo,
-        onPressed: () {
-          servicioService.selectedServicio = new Servicio(
-              horario: '', discapacitados: false, name: 'Fútbol', personas: 0);
-          Navigator.push(context, AnimationPageRoute(widget: ServicioScreen()));
-        },
-      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.blueGrey,

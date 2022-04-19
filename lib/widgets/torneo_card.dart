@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/models/models.dart';
+import 'package:login/screens/torneo_edit.dart';
 
 class TorneoCard extends StatelessWidget {
   final Torneos torneo;
@@ -9,53 +10,63 @@ class TorneoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        margin: EdgeInsets.only(top: 30, bottom: 20),
-        width: double.infinity,
-        height: 250,
+        margin: const EdgeInsets.only(top: 20, bottom: 10),
+        padding: const EdgeInsets.symmetric(),
         decoration: _cardBorders(),
-        child: Stack(
-          alignment: Alignment.bottomLeft,
+        child: Column(
           children: [
-            _BackgroundImage(torneo.picture),
-            _TorneoDetails(
-              title: torneo.disciplina,
-              subTitle: torneo.bases,
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: _EquiposMax(
+            ListTile(
+              title: Text(torneo.disciplina),
+              subtitle: Text(torneo.fecha.toString()),
+              trailing: _EquiposMax(
                 torneo.equipos,
               ),
             ),
-            if (torneo.disponibilidad)
-              Positioned(
-                top: 0,
-                left: 0,
-                child: _Disponibilidad(),
-              ),
+            Stack(
+              children: [
+                _BackgroundImage(torneo.picture),
+                if (torneo.disponibilidad)
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: _Disponibilidad(),
+                  ),
+              ],
+            ),
+            ButtonBar(
+              children: [
+                TextButton(
+                  child: const Text('EDITAR'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ToneoEditar(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )
           ],
         ),
       ),
     );
   }
 
-  BoxDecoration _cardBorders() => BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(25),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black12, offset: Offset(0, 7), blurRadius: 10)
-          ]);
+  BoxDecoration _cardBorders() =>
+      const BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(color: Colors.black12, offset: Offset(0, 7), blurRadius: 10)
+      ]);
 }
 
 class _Disponibilidad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FittedBox(
+      child: const FittedBox(
         fit: BoxFit.contain,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
@@ -68,9 +79,8 @@ class _Disponibilidad extends StatelessWidget {
       width: 75,
       height: 60,
       decoration: BoxDecoration(
-          color: Colors.green[400],
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25), bottomRight: Radius.circular(25))),
+        color: Colors.blueGrey,
+      ),
     );
   }
 }
@@ -85,17 +95,17 @@ class _EquiposMax extends StatelessWidget {
       child: FittedBox(
         fit: BoxFit.contain,
         child: Padding(
-          padding: EdgeInsets.symmetric(),
+          padding: const EdgeInsets.symmetric(),
           child: RichText(
             text: TextSpan(
               children: [
-                WidgetSpan(
-                  child: Icon(Icons.groups, size: 24),
+                const WidgetSpan(
+                  child: Icon(Icons.groups, size: 24, color: Colors.black),
                 ),
                 TextSpan(
                   text: ('$equipos'),
-                  style: TextStyle(
-                      color: Colors.white,
+                  style: const TextStyle(
+                      color: Colors.black,
                       fontSize: 23,
                       fontWeight: FontWeight.w600),
                 ),
@@ -107,10 +117,9 @@ class _EquiposMax extends StatelessWidget {
       width: 80,
       height: 60,
       alignment: Alignment.center,
-      decoration: BoxDecoration(
-          color: Colors.indigo,
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(25), bottomLeft: Radius.circular(25))),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
     );
   }
 }
@@ -123,9 +132,9 @@ class _TorneoDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 50),
+      padding: const EdgeInsets.only(right: 50),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         width: double.infinity,
         height: 70,
         decoration: _buildBoxDecoration(),
@@ -134,7 +143,7 @@ class _TorneoDetails extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 20,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
@@ -143,7 +152,7 @@ class _TorneoDetails extends StatelessWidget {
             ),
             Text(
               subTitle,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 color: Colors.white,
               ),
@@ -155,10 +164,9 @@ class _TorneoDetails extends StatelessWidget {
     );
   }
 
-  BoxDecoration _buildBoxDecoration() => BoxDecoration(
-      color: Colors.indigo,
-      borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(25), topRight: Radius.circular(25)));
+  BoxDecoration _buildBoxDecoration() => const BoxDecoration(
+        color: Colors.indigo,
+      );
 }
 
 class _BackgroundImage extends StatelessWidget {
@@ -169,17 +177,16 @@ class _BackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
-        height: 400,
+        height: 300,
         child: url == null
-            ? Image(
+            ? const Image(
                 image: AssetImage('assets/no-image.png'),
                 fit: BoxFit.cover,
               )
             : FadeInImage(
-                placeholder: AssetImage('assets/jar-loading.gif'),
+                placeholder: const AssetImage('assets/jar-loading.gif'),
                 image: NetworkImage(url!),
                 fit: BoxFit.cover,
               ),

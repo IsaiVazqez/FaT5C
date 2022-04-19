@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login/routes/app_routes.dart';
 
 class Register extends StatelessWidget {
   @override
@@ -7,49 +6,57 @@ class Register extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(
-                child: Image.asset(
-                  'assets/logo.png',
-                  height: 300.0,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Registrate',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
                 ),
-              ),
-              const Text(
-                'Registrate',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              ),
-              const SizedBox(
-                height: 15.0,
-              ),
-              _userTextField(),
-              const SizedBox(
-                height: 15,
-              ),
-              _passwordTextField(),
-              const SizedBox(
-                height: 20,
-              ),
-              _bottonLogin(),
-              const SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, 'login'),
-                style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.all(
-                        Colors.indigo.withOpacity(0.1)),
-                    shape: MaterialStateProperty.all(const StadiumBorder())),
-                child: const Text('¿Ya tienes cuenta?',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ),
-            ],
+                const SizedBox(
+                  height: 15.0,
+                ),
+                _userTextField(),
+                const SizedBox(
+                  height: 15,
+                ),
+                _passwordTextField(),
+                const SizedBox(
+                  height: 20,
+                ),
+                _telefonoTextField(),
+                const SizedBox(
+                  height: 20,
+                ),
+                _direccionTextField(),
+                const SizedBox(
+                  height: 20,
+                ),
+                _horariosTextField(),
+                const SizedBox(
+                  height: 20,
+                ),
+                _bottonLogin(),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pushReplacementNamed(context, 'login'),
+                  style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.all(
+                          Colors.indigo.withOpacity(0.1)),
+                      shape: MaterialStateProperty.all(const StadiumBorder())),
+                  child: const Text('¿Ya tienes cuenta?',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -67,6 +74,60 @@ class Register extends StatelessWidget {
             icon: Icon(Icons.email),
             hintText: 'ejemplo@correo.com',
             labelText: 'Correo electronico',
+          ),
+          onChanged: (value) {},
+        ),
+      );
+    });
+  }
+
+  Widget _telefonoTextField() {
+    return StreamBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(
+            icon: Icon(Icons.phone_android_outlined),
+            hintText: '9992939390',
+            labelText: 'Teléfono',
+          ),
+          onChanged: (value) {},
+        ),
+      );
+    });
+  }
+
+  Widget _direccionTextField() {
+    return StreamBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(
+            icon: Icon(Icons.location_on),
+            hintText: 'Calle 64 por 800 y 802 #24 Colonia Centro',
+            labelText: 'Dirección',
+          ),
+          onChanged: (value) {},
+        ),
+      );
+    });
+  }
+
+  Widget _horariosTextField() {
+    return StreamBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(
+            icon: Icon(Icons.date_range),
+            hintText: 'Lunes a Domingo de 10AM a 10 PM',
+            labelText: 'Horarios del club',
           ),
           onChanged: (value) {},
         ),
