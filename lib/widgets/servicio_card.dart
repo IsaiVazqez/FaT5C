@@ -38,7 +38,6 @@ class ServicioCard extends StatelessWidget {
             ),
             ButtonBar(
               children: [
-                Text(servicio.name),
                 TextButton(
                   child: const Text('EDITAR'),
                   onPressed: () {

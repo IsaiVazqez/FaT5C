@@ -19,7 +19,7 @@ class TorneoCard extends StatelessWidget {
           children: [
             ListTile(
               title: Text(torneo.disciplina),
-              subtitle: Text(torneo.fecha.toString()),
+              subtitle: Text('Fecha ${torneo.fecha.toString()}'),
               trailing: _EquiposMax(
                 torneo.equipos,
               ),
@@ -37,6 +37,7 @@ class TorneoCard extends StatelessWidget {
             ),
             ButtonBar(
               children: [
+                Text('Precio ${torneo.costo.toString()}'),
                 TextButton(
                   child: const Text('EDITAR'),
                   onPressed: () {

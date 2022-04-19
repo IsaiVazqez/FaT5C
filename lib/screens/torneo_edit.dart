@@ -96,7 +96,7 @@ class _TorneosScreenBody extends StatelessWidget {
 }
 
 class _TorneoForm extends StatelessWidget {
-  final format = DateFormat("yyyy-MM-dd HH:mm");
+  final format = DateFormat("yyyy-MM-dd");
 
   @override
   Widget build(BuildContext context) {
@@ -299,12 +299,8 @@ class _TorneoForm extends StatelessWidget {
 
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.only(
-          bottomRight: Radius.circular(25),
-          bottomLeft: Radius.circular(25),
-        ),
         border: Border.all(
-          color: Colors.indigo,
+          color: Colors.blueGrey,
         ),
         boxShadow: [
           BoxShadow(
